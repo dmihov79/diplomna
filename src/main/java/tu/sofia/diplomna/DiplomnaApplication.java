@@ -8,7 +8,6 @@ public class DiplomnaApplication {
 
   public static void main(String[] args) {
 
-
     SpringApplication.run(DiplomnaApplication.class, args);
   }
 }
