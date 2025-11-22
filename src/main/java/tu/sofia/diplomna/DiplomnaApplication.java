@@ -10,6 +10,7 @@ public class DiplomnaApplication {
 
 
 
+
     SpringApplication.run(DiplomnaApplication.class, args);
   }
 }
