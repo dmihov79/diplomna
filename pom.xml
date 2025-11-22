@@ -131,6 +131,8 @@
 						<configuration>
 							<nodeVersion>${node.version}</nodeVersion>
 							<npmVersion>${npm.version}</npmVersion>
+							<nodeDownloadRoot>https://nodejs.org/dist/</nodeDownloadRoot>
+							<npmDownloadRoot>https://registry.npmjs.org/npm/-/</npmDownloadRoot>
 						</configuration>
 					</execution>
 
