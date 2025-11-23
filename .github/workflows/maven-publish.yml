@@ -32,6 +32,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Find and set Maven directory
+      id: find-pom
+      run: |
+        POM_DIR=$(find . -name "pom.xml" -type f -printf '%h\n' | head -1)
+        if [ -z "$POM_DIR" ]; then
+          echo "No pom.xml found"
+          exit 1
+        fi
+        echo "POM found in: $POM_DIR"
+        echo "pom_dir=$POM_DIR" >> $GITHUB_OUTPUT
+        
     - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
