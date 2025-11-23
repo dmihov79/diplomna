@@ -47,5 +47,14 @@ jobs:
       with:
         node-version: 24.11.1
 
+    - name: Install frontend dependencies manually (if needed)
+      working-directory: ./src/main/frontend
+      run: |
+        if [ -f "package.json" ]; then
+          npm install
+        fi
+
     - name: Build with Maven
-      run: mvn clean install -Dfrontend.nodeDownloadRoot=false -Dfrontend.npmDownloadRoot=false
+      run: mvn clean install \
+          -Dfrontend.skip=true \
+          -Dmaven.frontend.skip=true
