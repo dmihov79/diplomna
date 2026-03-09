@@ -1,35 +1,67 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { type JSX } from "react";
+import "./App.css";
+import Navbar from "./components/Navbar";
+import HomePage from "./pages/home/HomePage";
+import { BrowserRouter, Routes, Route } from "react-router";
+import {
+  faHome,
+  type IconDefinition,
+} from "@fortawesome/free-regular-svg-icons";
+
+export type Tab = {
+  label: string;
+  icon: IconDefinition;
+  path: string;
+  element: JSX.Element;
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+  const tabs = [
+    {
+      label: "Home",
+      icon: faHome,
+      path: "/home",
+      element: <HomePage />,
+    },
+    {
+      label: "Test1",
+      icon: faHome,
+      path: "/test1",
+      element: <HomePage />,
+    },
+    {
+      label: "Test2",
+      icon: faHome,
+      path: "/test2",
+      element: <HomePage />,
+    },
+    {
+      label: "Test3",
+      icon: faHome,
+      path: "/test3",
+      element: <HomePage />,
+    },
+  ];
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <BrowserRouter>
+      <div className="h-screen w-full transition-colors">
+        <Navbar tabs={tabs}></Navbar>
+        <div>
+          <Routes>
+            <Route element={<HomePage />} path="/" />
+            {tabs.map((tab) => (
+              <Route
+                key={tab.label}
+                element={tab.element}
+                path={tab.path}
+              ></Route>
+            ))}
+          </Routes>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
