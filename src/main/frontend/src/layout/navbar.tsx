@@ -1,6 +1,6 @@
 // src/components/Navbar.jsx
-import { Link, useLocation } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { Link, useLocation } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 export default function Navbar() {
   const location = useLocation();
@@ -16,16 +16,13 @@ export default function Navbar() {
             </Link>
             <div className="flex space-x-1">
               <Link to="/">
-                <Button
-                  variant={pathname === "/" ? "default" : "ghost"}
-                  className="text-sm"
-                >
+                <Button variant={pathname === '/' ? 'default' : 'ghost'} className="text-sm">
                   Home
                 </Button>
               </Link>
               <Link to="/hook-form">
                 <Button
-                  variant={pathname === "/hook-form" ? "default" : "ghost"}
+                  variant={pathname === '/hook-form' ? 'default' : 'ghost'}
                   className="text-sm"
                 >
                   Hook Form Example
