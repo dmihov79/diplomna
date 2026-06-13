@@ -28,7 +28,7 @@ jobs:
         run: mvn fmt:check
 
       - name: Run Prettier
-        uses: creyD/prettier_action@v4
+        uses: creyD/prettier_action@v4.6
         with:
           prettier_options: --check **/*.{ts,tsx,js,jsx,json,css,scss}
 
