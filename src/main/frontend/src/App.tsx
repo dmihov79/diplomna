@@ -1,11 +1,6 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-  RouteObject,
-  Outlet,
-} from "react-router-dom";
-import React from "react";
-import Layout from "@/layout";
+import { createBrowserRouter, RouterProvider, RouteObject, Outlet } from 'react-router-dom';
+import React from 'react';
+import Layout from '@/layout';
 
 function App() {
   // Type the glob imports more precisely
@@ -14,7 +9,7 @@ function App() {
     loader?: () => Promise<unknown>;
     action?: () => Promise<unknown>;
     ErrorBoundary?: React.ComponentType;
-  }>("./pages/**/*.{jsx,tsx}", {
+  }>('./pages/**/*.{jsx,tsx}', {
     eager: true,
   });
 
@@ -25,12 +20,11 @@ function App() {
         return null;
       }
 
-      const normalizedPathName = fileName.includes("$")
-        ? fileName.replace("$", ":")
-        : fileName.replace(/\/index/, "");
+      const normalizedPathName = fileName.includes('$')
+        ? fileName.replace('$', ':')
+        : fileName.replace(/\/index/, '');
 
-      const routePath =
-        fileName === "index" ? "/" : `/${normalizedPathName.toLowerCase()}`;
+      const routePath = fileName === 'index' ? '/' : `/${normalizedPathName.toLowerCase()}`;
       const Component = pages[path].default;
 
       return {
@@ -42,7 +36,7 @@ function App() {
 
   const routes: RouteObject[] = [
     {
-      path: "/",
+      path: '/',
       element: (
         <Layout>
           <Outlet />

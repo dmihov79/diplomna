@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Card,
   CardContent,
@@ -6,20 +6,20 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { Switch } from "@/components/ui/switch";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
+import { Switch } from '@/components/ui/switch';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Slider } from "@/components/ui/slider";
+} from '@/components/ui/select';
+import { Slider } from '@/components/ui/slider';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -30,7 +30,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+} from '@/components/ui/alert-dialog';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -38,23 +38,23 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Calendar } from "@/components/ui/calendar";
-import { CheckCircle, Info, Bell, Settings } from "lucide-react";
+} from '@/components/ui/accordion';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Calendar } from '@/components/ui/calendar';
+import { CheckCircle, Info, Bell, Settings } from 'lucide-react';
 
 export default function HomePage() {
   const [date, setDate] = React.useState(new Date());
   const [copySuccess, setCopySuccess] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText("pnpm create vrrtts").then(() => {
+    navigator.clipboard.writeText('pnpm create vrrtts').then(() => {
       setCopySuccess(true);
       setTimeout(() => setCopySuccess(false), 2000); // Reset text after 2 seconds
     });
@@ -67,9 +67,8 @@ export default function HomePage() {
           vite-react-router-tailwind-typescript-shadcn
         </h1>
         <p className="mb-6 text-gray-500">
-          A simple, clean and lightning fast template for a Vite/React
-          application with file-based routing, tailwindcss 4, typescript and
-          Shadcn UI.
+          A simple, clean and lightning fast template for a Vite/React application with file-based
+          routing, tailwindcss 4, typescript and Shadcn UI.
         </p>
         <div className="flex flex-col gap-2 mb-8 text-center">
           <h2 className="font-bold text-lg">Installation</h2>
@@ -78,7 +77,7 @@ export default function HomePage() {
               className="bg-gray-900 p-2 rounded-md text-white cursor-pointer"
               onClick={handleCopy}
             >
-              <code>{copySuccess ? "Copied!" : "pnpm create vrrtts"}</code>
+              <code>{copySuccess ? 'Copied!' : 'pnpm create vrrtts'}</code>
             </pre>
           </p>
         </div>
@@ -109,9 +108,7 @@ export default function HomePage() {
             <Card>
               <CardHeader>
                 <CardTitle>Buttons</CardTitle>
-                <CardDescription>
-                  Various button styles and states
-                </CardDescription>
+                <CardDescription>Various button styles and states</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex flex-wrap gap-2">
@@ -156,9 +153,7 @@ export default function HomePage() {
               <CardContent>
                 <div className="p-4 border rounded-lg">
                   <h3 className="font-medium">Nested Card Example</h3>
-                  <p className="text-gray-500 text-sm">
-                    Cards can contain any content
-                  </p>
+                  <p className="text-gray-500 text-sm">Cards can contain any content</p>
                 </div>
               </CardContent>
               <CardFooter className="flex justify-between">
@@ -277,13 +272,10 @@ export default function HomePage() {
                   </AlertDialogTrigger>
                   <AlertDialogContent>
                     <AlertDialogHeader>
-                      <AlertDialogTitle>
-                        Are you absolutely sure?
-                      </AlertDialogTitle>
+                      <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                       <AlertDialogDescription>
-                        This action cannot be undone. This will permanently
-                        delete your account and remove your data from our
-                        servers.
+                        This action cannot be undone. This will permanently delete your account and
+                        remove your data from our servers.
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
@@ -328,15 +320,11 @@ export default function HomePage() {
                 <Alert>
                   <Info className="w-4 h-4" />
                   <AlertTitle>Information</AlertTitle>
-                  <AlertDescription>
-                    This is an informational alert for the user.
-                  </AlertDescription>
+                  <AlertDescription>This is an informational alert for the user.</AlertDescription>
                 </Alert>
                 <Alert variant="destructive">
                   <AlertTitle>Error</AlertTitle>
-                  <AlertDescription>
-                    Something went wrong. Please try again.
-                  </AlertDescription>
+                  <AlertDescription>Something went wrong. Please try again.</AlertDescription>
                 </Alert>
               </CardContent>
             </Card>
@@ -362,8 +350,7 @@ export default function HomePage() {
                   <AccordionItem value="item-2">
                     <AccordionTrigger>Is it styled?</AccordionTrigger>
                     <AccordionContent>
-                      Yes. It comes with default styles that match the other
-                      components.
+                      Yes. It comes with default styles that match the other components.
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>

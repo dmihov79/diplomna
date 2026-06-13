@@ -1,8 +1,8 @@
 // app/layout.jsx
-import React from "react";
-import Navbar from "@/layout/navbar";
+import React from 'react';
+import Navbar from '@/layout/navbar';
 
-import { Toaster } from "@/components/ui/sonner";
+import { Toaster } from '@/components/ui/sonner';
 
 interface LayoutProps {
   children: React.ReactNode;
