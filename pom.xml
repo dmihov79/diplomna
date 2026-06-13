@@ -141,7 +141,6 @@
 							<pnpmVersion>${pnpm.version}</pnpmVersion>
 						</configuration>
 					</execution>
-					<!-- Install pnpm dependencies -->
 					<execution>
             			<id>pnpm install</id>
             			<goals>
@@ -153,6 +152,16 @@
             			</configuration>
         			</execution>
 
+					<execution>
+            			<id>pnpm check formatting</id>
+            			<goals>
+                			<goal>pnpm</goal>
+            			</goals>
+            			<phase>process-resources</phase>
+            			<configuration>
+                			<arguments>run format:check</arguments>
+            			</configuration>
+        			</execution>
 					<!-- Build the Vite project -->
 					<execution>
             			<id>pnpm build</id>
@@ -206,6 +215,25 @@
             			</configuration>
         			</execution>
     			</executions>
+			</plugin>
+			<plugin>
+    			<artifactId>maven-clean-plugin</artifactId>
+    			<configuration>
+        			<filesets>
+            			<fileset>
+							<directory>src/main/frontend/dist</directory>
+                			<followSymlinks>false</followSymlinks>
+            			</fileset>
+						<fileset>
+							<directory>src/main/frontend/node</directory>
+                			<followSymlinks>false</followSymlinks>
+            			</fileset>
+						<fileset>
+							<directory>src/main/frontend/node_modules</directory>
+                			<followSymlinks>false</followSymlinks>
+            			</fileset>
+        			</filesets>
+    			</configuration>
 			</plugin>
 			<plugin>
 				<groupId>com.spotify.fmt</groupId>

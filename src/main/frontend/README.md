@@ -69,17 +69,20 @@ When running the create command, you'll be prompted to select:
 To contribute to this project:
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/yourusername/create-vrrtts.git
    cd create-vrrtts
    ```
 
 2. Install dependencies:
+
    ```bash
    pnpm install
    ```
 
 3. Link it locally for testing:
+
    ```bash
    pnpm link --global
    ```
