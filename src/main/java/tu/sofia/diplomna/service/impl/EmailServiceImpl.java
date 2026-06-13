@@ -1,7 +1,8 @@
 package tu.sofia.diplomna.service.impl;
 
 import java.util.concurrent.CompletableFuture;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,11 +12,11 @@ import org.springframework.stereotype.Service;
 import tu.sofia.diplomna.service.EmailService;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class EmailServiceImpl implements EmailService {
   private static final Logger log = LoggerFactory.getLogger(EmailServiceImpl.class);
 
-  private JavaMailSender mailSender;
+  private final JavaMailSender mailSender;
 
   @Value("${spring.mail.from}")
   private String fromEmail;
