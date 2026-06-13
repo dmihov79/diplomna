@@ -32,8 +32,8 @@
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<maven.compiler.release>${java.version}</maven.compiler.release>
 		<frontend-maven-plugin.version>1.15.4</frontend-maven-plugin.version>
-		<node.version>v24.11.1</node.version>
-		<npm.version>10.8.3</npm.version>
+		<node.version>v26.3.0</node.version>
+		<pnpm.version>v11.6.0</pnpm.version>
 		<vite.output.dir>dist</vite.output.dir>
 	</properties>
 	<dependencies>
@@ -131,41 +131,39 @@
 				</configuration>
 
 				<executions>
-					<!-- Install Node.js and npm -->
 					<execution>
-						<id>install node and npm</id>
-						<goals>
-							<goal>install-node-and-npm</goal>
-						</goals>
+    					<id>install node and pnpm</id>
+    					<goals>
+        					<goal>install-node-and-pnpm</goal>
+    					</goals>
 						<configuration>
 							<nodeVersion>${node.version}</nodeVersion>
-							<npmVersion>${npm.version}</npmVersion>
-							<nodeDownloadRoot>https://nodejs.org/dist/</nodeDownloadRoot>
-							<npmDownloadRoot>https://registry.npmjs.org/npm/-/</npmDownloadRoot>
+							<pnpmVersion>${pnpm.version}</pnpmVersion>
 						</configuration>
 					</execution>
-
-					<!-- Install npm dependencies -->
+					<!-- Install pnpm dependencies -->
 					<execution>
-						<id>npm install</id>
-						<goals>
-							<goal>npm</goal>
-						</goals>
-						<configuration>
-							<arguments>install</arguments>
-						</configuration>
-					</execution>
+            			<id>pnpm install</id>
+            			<goals>
+                			<goal>pnpm</goal>
+            			</goals>
+            			<phase>generate-resources</phase>
+            			<configuration>
+                			<arguments>install --config.confirmModulesPurge=false</arguments>
+            			</configuration>
+        			</execution>
 
 					<!-- Build the Vite project -->
 					<execution>
-						<id>npm run build</id>
-						<goals>
-							<goal>npm</goal>
-						</goals>
-						<configuration>
-							<arguments>run build</arguments>
-						</configuration>
-					</execution>
+            			<id>pnpm build</id>
+            			<goals>
+                			<goal>pnpm</goal>
+            			</goals>
+            			<phase>compile</phase>
+            			<configuration>
+                			<arguments>run build</arguments>
+            			</configuration>
+        			</execution>
 				</executions>
 			</plugin>
 			<!-- Copy built files to Maven output directory -->
@@ -191,6 +189,23 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+    			<groupId>org.codehaus.mojo</groupId>
+    			<artifactId>build-helper-maven-plugin</artifactId>
+    			<executions>
+        			<execution>
+            			<phase>generate-sources</phase>
+            			<goals>
+                			<goal>add-source</goal>
+            			</goals>
+            			<configuration>
+                			<sources>
+                    			<source>target/generated-sources/annotations</source>
+                			</sources>
+            			</configuration>
+        			</execution>
+    			</executions>
 			</plugin>
 			<plugin>
 				<groupId>com.spotify.fmt</groupId>

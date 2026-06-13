@@ -2,7 +2,6 @@ package tu.sofia.diplomna.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.experimental.FieldNameConstants;
 
 @Data
 @Entity
@@ -20,5 +19,5 @@ public class Document {
 
   @Lob
   @Column(name = "document", columnDefinition = "BYTEA")
-  private byte[] document;
+  private byte[] content;
 }

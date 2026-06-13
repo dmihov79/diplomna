@@ -1,6 +1,5 @@
 package tu.sofia.diplomna.dto;
 
-
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -15,7 +14,7 @@ public record ApplicantDto(
     String resume,
     LocalDateTime createdAt,
     LocalDateTime updatedAt) {
-    public String fullName() {
-        return firstName + " " + lastName;
-    }
+  public String fullName() {
+    return firstName + " " + lastName;
+  }
 }

@@ -1,73 +1,94 @@
-# React + TypeScript + Vite
+# create-vrrtts
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A CLI tool to quickly scaffold Vite+React+React Router+TypeScript+Tailwind+ShadCN UI projects.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🚀 Quick project setup with a single command
+- ⚛️ Modern React setup with React Router
+- 🔷 TypeScript support out of the box
+- 🎨 Tailwind CSS pre-configured
+- 🧩 ShadCN UI components ready to use
+- 📁 Organized folder structure for components, pages, and layouts
+- 🧩 File-based routing with automatic route generation
 
-## React Compiler
+## Usage
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+# Create a new project
+pnpm create vrrtts my-project
 
-## Expanding the ESLint configuration
+# Follow the prompts to configure your project
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Start development
+cd my-project
+pnpm install
+pnpm dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Project Structure
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+my-project/
+├── public/            # Static assets
+├── src/
+│   ├── components/    # Reusable UI components (includes ShadCN UI)
+│   ├── layout/        # Layout components
+│   ├── pages/         # Page components (auto-routed)
+│   ├── App.tsx        # Main App component
+│   ├── main.tsx       # Entry point
+│   ├── router.tsx     # Router configuration
+│   └── index.css      # Global styles
+├── index.html
+├── package.json
+├── postcss.config.js
+├── tailwind.config.js
+├── tsconfig.json
+└── vite.config.ts
+```
+
+## File-Based Routing
+
+Routes are automatically generated based on your file structure in the `pages` directory:
+
+- `src/pages/index.tsx` → `/`
+- `src/pages/about.tsx` → `/about`
+- `src/pages/users/index.tsx` → `/users`
+- `src/pages/users/$id.tsx` → `/users/:id` (dynamic parameter)
+
+## Configuration Options
+
+When running the create command, you'll be prompted to select:
+
+- Project name
+- Language variant (TypeScript or JavaScript)
+- Whether to overwrite existing directories
+
+## Development
+
+To contribute to this project:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/create-vrrtts.git
+   cd create-vrrtts
+   ```
+
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+
+3. Link it locally for testing:
+   ```bash
+   pnpm link --global
+   ```
+
+4. Test your changes:
+   ```bash
+   pnpm create vrrtts test-project
+   ```
+
+## License
+
+MIT

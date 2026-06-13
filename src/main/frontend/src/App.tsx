@@ -1,67 +1,61 @@
-import { type JSX } from "react";
-import "./App.css";
-import Navbar from "./components/Navbar";
-import HomePage from "./pages/home/HomePage";
-import { BrowserRouter, Routes, Route } from "react-router";
 import {
-  faHome,
-  type IconDefinition,
-} from "@fortawesome/free-regular-svg-icons";
-
-export type Tab = {
-  label: string;
-  icon: IconDefinition;
-  path: string;
-  element: JSX.Element;
-};
+  createBrowserRouter,
+  RouterProvider,
+  RouteObject,
+  Outlet,
+} from "react-router-dom";
+import React from "react";
+import Layout from "@/layout";
 
 function App() {
-  const tabs = [
+  // Type the glob imports more precisely
+  const pages = import.meta.glob<{
+    default: React.ComponentType;
+    loader?: () => Promise<unknown>;
+    action?: () => Promise<unknown>;
+    ErrorBoundary?: React.ComponentType;
+  }>("./pages/**/*.{jsx,tsx}", {
+    eager: true,
+  });
+
+  const childRoutes = Object.keys(pages)
+    .map((path): RouteObject | null => {
+      const fileName = path.match(/\.\/pages\/(.*)\.(?:jsx|tsx)$/)?.[1];
+      if (!fileName) {
+        return null;
+      }
+
+      const normalizedPathName = fileName.includes("$")
+        ? fileName.replace("$", ":")
+        : fileName.replace(/\/index/, "");
+
+      const routePath =
+        fileName === "index" ? "/" : `/${normalizedPathName.toLowerCase()}`;
+      const Component = pages[path].default;
+
+      return {
+        path: routePath,
+        element: <Component />,
+      };
+    })
+    .filter((route): route is RouteObject => route !== null);
+
+  const routes: RouteObject[] = [
     {
-      label: "Home",
-      icon: faHome,
-      path: "/home",
-      element: <HomePage />,
-    },
-    {
-      label: "Test1",
-      icon: faHome,
-      path: "/test1",
-      element: <HomePage />,
-    },
-    {
-      label: "Test2",
-      icon: faHome,
-      path: "/test2",
-      element: <HomePage />,
-    },
-    {
-      label: "Test3",
-      icon: faHome,
-      path: "/test3",
-      element: <HomePage />,
+      path: "/",
+      element: (
+        <Layout>
+          <Outlet />
+        </Layout>
+      ),
+      children: childRoutes,
     },
   ];
 
-  return (
-    <BrowserRouter>
-      <div className="h-screen w-full transition-colors">
-        <Navbar tabs={tabs}></Navbar>
-        <div>
-          <Routes>
-            <Route element={<HomePage />} path="/" />
-            {tabs.map((tab) => (
-              <Route
-                key={tab.label}
-                element={tab.element}
-                path={tab.path}
-              ></Route>
-            ))}
-          </Routes>
-        </div>
-      </div>
-    </BrowserRouter>
-  );
+  // Create browser router with properly typed routes
+  const router = createBrowserRouter(routes);
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;
