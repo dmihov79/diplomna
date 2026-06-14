@@ -1,97 +1,99 @@
-# create-vrrtts
+# Astro + Shadcn Starter
 
-A CLI tool to quickly scaffold Vite+React+React Router+TypeScript+Tailwind+ShadCN UI projects.
+Welcome to the Astro + Shadcn Starter Template! This project is designed to help you get started quickly with [Astro](https://astro.build) and [Shadcn UI](https://ui.shadcn.com). It includes Tailwind CSS for styling and React for building interactive components.
+
+![astroxshadcn](https://github.com/user-attachments/assets/99b0b2a1-3ef9-4f28-a347-91c665279c2d)
+
+## Table of Contents
+
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Usage](#usage)
+- [Important Notes About Astro & Shadcn](#important)
 
 ## Features
 
-- 🚀 Quick project setup with a single command
-- ⚛️ Modern React setup with React Router
-- 🔷 TypeScript support out of the box
-- 🎨 Tailwind CSS pre-configured
-- 🧩 ShadCN UI components ready to use
-- 📁 Organized folder structure for components, pages, and layouts
-- 🧩 File-based routing with automatic route generation
+- 🚀 **Astro** - Modern static site generator.
+- 🎨 **Shadcn UI** - Beautifully designed components built with Radix UI and Tailwind CSS.
+- 📦 **Tailwind CSS** - Utility-first CSS framework.
+- 🔥 **React** - Library for building user interfaces.
 
-## Usage
+## Getting Started
 
-```bash
-# Create a new project
-pnpm create vrrtts my-project
+Follow these instructions to set up the project locally.
 
-# Follow the prompts to configure your project
+### Prerequisites
 
-# Start development
-cd my-project
-pnpm install
-pnpm dev
-```
+Ensure you have the following installed:
+
+- [Node.js](https://nodejs.org/en/download/)
+- [pnpm](https://www.npmjs.com/get-pnpm)
+
+### Installation
+
+1. **Clone the repository**:
+
+   ```sh
+   git clone https://github.com/your-username/astro-shadcn-starter.git
+   cd astro-shadcn-starter
+   ```
+
+2. **Install dependencies**:
+
+   ```sh
+   pnpm install
+   ```
+
+3. **Start the development server**:
+
+   ```sh
+   pnpm dev
+   ```
+
+   Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
 ## Project Structure
 
 ```
-my-project/
-├── public/            # Static assets
-├── src/
-│   ├── components/    # Reusable UI components (includes ShadCN UI)
-│   ├── layout/        # Layout components
-│   ├── pages/         # Page components (auto-routed)
-│   ├── App.tsx        # Main App component
-│   ├── main.tsx       # Entry point
-│   ├── router.tsx     # Router configuration
-│   └── index.css      # Global styles
-├── index.html
-├── package.json
-├── postcss.config.js
-├── tailwind.config.js
-├── tsconfig.json
-└── vite.config.ts
+├── public # Static assets
+├── src
+│ ├── components # React components
+│ ├────ui # Shadcn installed components
+│ ├── layouts # Layout components
+│ ├── pages # Astro pages
+│ ├── styles # Global styles
+│ └── utils # Utility functions
+├── astro.config.mjs # Astro configuration
+├── tailwind.config.mjs # Tailwind CSS configuration
+└── package.json # Project metadata and dependencies
 ```
 
-## File-Based Routing
+## Usage
 
-Routes are automatically generated based on your file structure in the `pages` directory:
+### Adding a New Page
 
-- `src/pages/index.tsx` → `/`
-- `src/pages/about.tsx` → `/about`
-- `src/pages/users/index.tsx` → `/users`
-- `src/pages/users/$id.tsx` → `/users/:id` (dynamic parameter)
+To add a new page, create a new `.astro` file in the `src/pages` directory.
 
-## Configuration Options
+Example:
 
-When running the create command, you'll be prompted to select:
+```astro
+---
+import Layout from '../layouts/Layout.astro';
+---
 
-- Project name
-- Language variant (TypeScript or JavaScript)
-- Whether to overwrite existing directories
+<Layout title="New Page">
+  <h1>New Page</h1>
+  <p>This is a new page.</p>
+</Layout>
+```
 
-## Development
+## Important
 
-To contribute to this project:
+Due to the static and island based nature of Astro, a lot of Shadcn components won't work out of the box,
+some components such as the Avatar require more work on your side to enable them to work (see `src/components/Avatar.tsx`).
 
-1. Clone the repository:
+You can find useful information on this from the following links:
 
-   ```bash
-   git clone https://github.com/yourusername/create-vrrtts.git
-   cd create-vrrtts
-   ```
-
-2. Install dependencies:
-
-   ```bash
-   pnpm install
-   ```
-
-3. Link it locally for testing:
-
-   ```bash
-   pnpm link --global
-   ```
-
-4. Test your changes:
-   ```bash
-   pnpm create vrrtts test-project
-   ```
-
-## License
-
-MIT
+- [Issues with Astro Islands when using Shadcn](https://github.com/shadcn-ui/ui/issues/2249)
+- [Abstract components into react, ts components](https://github.com/shadcn-ui/ui/issues/2890)
