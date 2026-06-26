@@ -19,7 +19,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
   private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
   @ExceptionHandler(NotFoundException.class)
-  public ResponseEntity<ErrorResponse> handleMailException(
+  public ResponseEntity<ErrorResponse> handleNotFoundException(
       NotFoundException ex, HttpServletRequest request) {
 
     ErrorResponse error = ErrorResponse.builder(ex, ex.getStatus(), ex.getMessage()).build();
@@ -29,7 +29,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
   }
 
   @ExceptionHandler(BadRequestException.class)
-  public ResponseEntity<ErrorResponse> handleMailException(
+  public ResponseEntity<ErrorResponse> handleBadRequestException(
       BadRequestException ex, HttpServletRequest request) {
 
     ErrorResponse error = ErrorResponse.builder(ex, ex.getStatus(), ex.getMessage()).build();
@@ -42,8 +42,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
   public ResponseEntity<ErrorResponse> handleMailException(
       MailException ex, HttpServletRequest request) {
 
-    ErrorResponse error =
-        ErrorResponse.builder(ex, HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage()).build();
+    ErrorResponse error = ErrorResponse.builder(ex, HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage()).build();
 
     log.error("Unexpected error occurred", ex);
     return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -53,8 +52,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
   public ResponseEntity<ErrorResponse> handleGenericException(
       Exception ex, HttpServletRequest request) {
 
-    ErrorResponse error =
-        ErrorResponse.builder(ex, HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage()).build();
+    ErrorResponse error = ErrorResponse.builder(ex, HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage()).build();
 
     log.error("Unexpected error occurred", ex);
     return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
