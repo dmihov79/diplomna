@@ -42,7 +42,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
   public ResponseEntity<ErrorResponse> handleMailException(
       MailException ex, HttpServletRequest request) {
 
-    ErrorResponse error = ErrorResponse.builder(ex, HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage()).build();
+    ErrorResponse error =
+        ErrorResponse.builder(ex, HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage()).build();
 
     log.error("Unexpected error occurred", ex);
     return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -52,7 +53,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
   public ResponseEntity<ErrorResponse> handleGenericException(
       Exception ex, HttpServletRequest request) {
 
-    ErrorResponse error = ErrorResponse.builder(ex, HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage()).build();
+    ErrorResponse error =
+        ErrorResponse.builder(ex, HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage()).build();
 
     log.error("Unexpected error occurred", ex);
     return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
