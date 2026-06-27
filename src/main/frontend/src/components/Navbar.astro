@@ -1,0 +1,20 @@
+---
+const components: { title: string; href: string }[] = [
+  {
+    title: 'Start Page',
+    href: '/',
+  },
+  {
+    title: 'Test Page',
+    href: '/test',
+  },
+];
+---
+
+<nav>
+  {
+    components.map((component) => {
+      <a href={component.href}>component.title</a>;
+    })
+  }
+</nav>

@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import tu.sofia.diplomna.domain.dao.DocumentRepository;
 import tu.sofia.diplomna.domain.entity.Document;
@@ -15,6 +16,11 @@ import tu.sofia.diplomna.service.DocumentService;
 public class DocumentServiceImpl implements DocumentService {
 
   private final DocumentRepository documentRepository;
+
+  @Override
+  public Document findById(@NonNull Long documentId) {
+    return documentRepository.getReferenceById(documentId);
+  }
 
   @Override
   public Set<DocumentDto> toDtos(Collection<Document> documents) {
