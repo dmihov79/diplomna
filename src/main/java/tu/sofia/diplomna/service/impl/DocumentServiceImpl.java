@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
-
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import tu.sofia.diplomna.domain.dao.DocumentRepository;
